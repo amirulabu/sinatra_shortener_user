@@ -1,4 +1,24 @@
 <div class="container">
+  <h1>login page</h1>
+  <a href="/">home<a>  | <a href="/logout">logout<a>
+  <p>login to view the <a href="secretpage">secret page</a></p>
+  <p>u kenot login? why not <a href="create">create</a> a akaun fes ???</p>
+
+  <form action="login" method="post">
+  Username:<br>
+  <input type="text" name="username">
+  <br>
+  Passwerd:<br>
+  <input type="password" name="pwd">
+  <input type="submit" value="Login la">
+  </form>
+
+  <p>login? <%= session['pss'] %></p>
+  <p>user id <%= session[:user] %></p>
+</div>
+
+
+<div class="container">
   <h1>Welcome to link shotener</h1>
   <p>put the link to shorten</p>
 
@@ -9,22 +29,24 @@
   <br />
   <br />
 
+  <table border=1px align="center">
+    <tr>
+      <th>ID</th>
+      <th>Long url</th>
+      <th>Short url</th>
+      <th>Click count</th>
+      <th>User id</th>
+    </tr>
+    <% @urls.each do |x| %>
+    <tr>
+      <td><%= x.id %></td>
+      <td><a href="<%= x.long_url %>"><%= x.long_url %></a></td>
+      <td><a href="http://localhost:9393/<%= x.short_url %>"><%= x.short_url %></td>
+      <td><%= x.click_count %></td>
+      <td><%= x.user_id %></td>
+    </tr>
+    <% end %>
+  </table>
 
-<table border=1px align="center">
-  <tr>
-    <th>ID</th>
-    <th>Long url</th>
-    <th>Short url</th>
-    <th>Click count</th>
-  </tr>
-  <% @urls.each do |x| %>
-  <tr>
-    <td><%= x.id %></td>
-    <td><a href="<%= x.long_url %>"><%= x.long_url %></a></td>
-    <td><a href="http://localhost:9393/<%= x.short_url %>"><%= x.short_url %></td>
-    <td><%= x.click_count %></td>
-  </tr>
-  <% end %>
-</table>
 
 </div>
